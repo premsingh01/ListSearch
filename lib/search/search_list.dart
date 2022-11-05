@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:string_similarity/string_similarity.dart';
 
 
 class SearchList extends StatefulWidget {
@@ -166,10 +169,15 @@ class _SearchListState extends State<SearchList> {
         //   for(int j=0; j<searchText.length; j++){
         //     resultText = searchText.replaceAll('/', ' ');
         //   }
+        var similarity = StringSimilarity.compareTwoStrings(data.toLowerCase(), searchText.toLowerCase());
+        print('$similarity');
+        if (similarity>0.2) {
 
-        if (data.toLowerCase().contains(searchText.toLowerCase())) {
           searchResult.add(data);
         }
+        // if (data.toLowerCase().contains(searchText.toLowerCase())) {
+        //   searchResult.add(data);
+        // }
       }
     }
   }
